@@ -9,29 +9,16 @@ body {
 }
 
 header {
-    background: #ececec url('https://via.placeholder.com/1920x300?text=Фон+Хедера') no-repeat center center/cover;
+    background: url('images/hade/hade.png') no-repeat center center/cover; /* Путь к вашему изображению */
+    background-size: contain; /* Уменьшаем изображение так, чтобы оно не выходило за пределы */
     text-align: center;
     padding: 50px 0;
+    color: white; /* Белый цвет текста для контраста с фоном */
 }
 
+/* Убираем содержимое в header */
 header .header-content {
-    max-width: 800px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-size: 2.5em;
-    color: #444;
-    margin: 0 0 10px;
-}
-
-header p {
-    font-size: 1.2em;
-    color: #666;
+    display: none; /* Скрываем блок с текстом */
 }
 
 /* Навигация */
@@ -82,20 +69,81 @@ h2 {
 /* Галерея */
 .gallery {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
     gap: 15px;
+    justify-content: flex-start;
 }
 
 .gallery img {
     width: 300px;
     height: 400px;
+    object-fit: cover;
     border-radius: 10px;
+    cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .gallery img:hover {
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Модальное окно */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1; /* На переднем плане */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 80%;
+    margin: auto;
+    display: block;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    z-index: 10;
+    transform: translateY(-50%);
+}
+
+#prev {
+    left: 20px;
+}
+
+#next {
+    right: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Кнопки навигации для фото */
+.nav-btn:hover, .close:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Таблица */
