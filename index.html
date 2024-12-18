@@ -28,9 +28,29 @@
             <h2>Наши работы</h2>
             <p class="section-description">Мы гордимся качеством наших памятников. Каждая работа отражает заботу и уважение к памяти близких.</p>
             <div class="gallery">
-                <img src="https://via.placeholder.com/300x400?text=Пример+1" alt="Пример работы 1">
-                <img src="https://via.placeholder.com/300x400?text=Пример+2" alt="Пример работы 2">
-                <img src="https://via.placeholder.com/300x400?text=Пример+3" alt="Пример работы 3">
+                <img src="images/hahe/2c4c21a2-9887-48ae-b13a-3e4f5f30692c.jpg" alt="Работа 1">
+                <img src="images/hahe/5e2d394a-d25e-4844-b969-66cb6b0df58f.jpg" alt="Работа 2">
+                <img src="images/hahe/08f55f9d-f385-49c2-96da-f8a5f1be8f0e.jpg" alt="Работа 3">
+                <img src="images/hahe/8ae73e7f-277d-4f10-a7b0-2134751029ab.jpg" alt="Работа 4">
+                <img src="images/hahe/285b9426-4eab-4d40-86af-278d34c6085b.jpg" alt="Работа 5">
+                <img src="images/hahe/02124ec4-0170-4601-aa92-69b90d7b9eee.jpg" alt="Работа 6">
+                <img src="images/hahe/d15357ba-af9f-47f6-a17a-88e15a84c51c.jpg" alt="Работа 7">
+                <img src="images/hahe/fd35f9d7-001d-4eac-87de-a1c6ef6e54b5.jpg" alt="Работа 8">
+                <img src="images/hahe/fdfab680-e719-4a79-8912-299bc9fc06bf.jpg" alt="Работа 9">
+                <img src="images/hahe/IMG_1005.jpg" alt="Работа 10">
+                <img src="images/hahe/IMG_1231.jpg" alt="Работа 11">
+                <img src="images/hahe/IMG_1305.jpg" alt="Работа 12">
+                <img src="images/hahe/IMG_1695.jpg" alt="Работа 13">
+                <img src="images/hahe/IMG_1714.jpg" alt="Работа 14">
+                <img src="images/hahe/IMG_1765.jpg" alt="Работа 15">
+                <img src="images/hahe/IMG_1794.jpg" alt="Работа 16">
+                <img src="images/hahe/IMG_1814.jpg" alt="Работа 17">
+                <img src="images/hahe/IMG_1959.jpg" alt="Работа 18">
+                <img src="images/hahe/IMG_4824.jpg" alt="Работа 19">
+                <img src="images/hahe/IMG_4840.jpg" alt="Работа 20">
+                <img src="images/hahe/IMG_4952.jpg" alt="Работа 21">
+                <img src="images/hahe/IMG_4986.jpg" alt="Работа 22">
+                <img src="images/hahe/IMG_5076.jpg" alt="Работа 23">
             </div>
         </section>
 
@@ -69,7 +89,7 @@
                 </div>
                 <div class="map">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24258.22630850486!2d36.05404513156809!3d52.96791363942448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41321d9a97af7dd7%3A0x5e3d2d38e9096b06!2z0J3QuNGB0LAsINCe0YHQtdC90LDRjywg0J7QsdCw0YHRgtGA0L7QstGB0YzQutC-0LPQviwg0KDQtdGB0YLQsNC90YHRjNC60LDRjyDQvtCx0YDQsNC90YbQuNGP!5e0!3m2!1sru!2sru!4v1699389234567!5m2!1sru!2sru" 
+                        src="https://www.google.com/maps/embed?pb=!1m18..." 
                         width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
@@ -77,8 +97,64 @@
         </section>
     </main>
 
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img id="modal-img" src="" alt="Изображение в модальном окне">
+        <button id="prev" class="nav-btn">←</button>
+        <button id="next" class="nav-btn">→</button>
+    </div>
+
     <footer>
         <p>&copy; 2024 Галерея Камня. Все права защищены.</p>
     </footer>
+
+    <!-- JavaScript код для модального окна -->
+    <script>
+        // Получаем все изображения в галерее
+        const galleryImages = document.querySelectorAll('.gallery img');
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modal-img');
+        const closeBtn = document.querySelector('.close');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+
+        let currentImageIndex = 0; // Индекс текущего изображения
+
+        // Функция для открытия модального окна
+        function openModal(index) {
+            modal.style.display = 'flex'; // Показываем модальное окно
+            modalImg.src = galleryImages[index].src; // Устанавливаем источник изображения
+            currentImageIndex = index; // Обновляем индекс текущего изображения
+        }
+
+        // Функция для закрытия модального окна
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none'; // Закрываем модальное окно
+        });
+
+        // Слушаем клики по изображениям в галерее
+        galleryImages.forEach((image, index) => {
+            image.addEventListener('click', () => openModal(index));
+        });
+
+        // Навигация по изображениям
+        prevBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex === 0) ? galleryImages.length - 1 : currentImageIndex - 1;
+            modalImg.src = galleryImages[currentImageIndex].src;
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex === galleryImages.length - 1) ? 0 : currentImageIndex + 1;
+            modalImg.src = galleryImages[currentImageIndex].src;
+        });
+
+        // Закрытие модального окна при клике вне изображения
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none'; // Закрываем окно при клике на фон
+            }
+        });
+    </script>
 </body>
 </html>
